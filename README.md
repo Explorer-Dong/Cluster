@@ -4,7 +4,11 @@
 
 #### 1.1 数据集简介
 
-[kdd 数据集](https://kdd.ics.uci.edu/databases/kddcup99/kddcup99.html)
+特征信息：https://kdd.ics.uci.edu/databases/kddcup99/kddcup.names
+
+数据集链接：[KDD Cup 1999 Data](https://kdd.ics.uci.edu/databases/kddcup99/kddcup99.html)
+
+
 
 #### 1.2 数据缺失值处理
 
@@ -23,5 +27,7 @@
 [聚类分析-kddcup99数据集](https://www.cnblogs.com/bigshuai/archive/2012/07/23/2605237.html)
 
 [基于pyspark的对KDD-99数据集的聚类分析实验](https://github.com/rikonaka/How-to-process-KDD-99-dataset) - [github](https://github.com/rikonaka/How-to-process-KDD-99-dataset)
+
+[聚类算法之K-means算法](https://blog.csdn.net/LoveCarpenter/article/details/85048822)
 
 ### 五、总结与反思
