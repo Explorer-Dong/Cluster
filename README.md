@@ -61,9 +61,23 @@ std_result = std_model.labels_
 - FM 指数：$\displaystyle \sqrt{\frac{a}{a+b} \cdot \frac{a}{a+c}}$
 - RI 指数：$\displaystyle \frac{2(a+d)}{m(m-1)}$
 
-上述 $a,b,c,d$ 分别对应两样本在两种模型下分类相同、有一个不同、全都不同的样本数量，显然 $a+b+c+d=m(m-1)/2$。三种指标的取值均在 $[0,1]$ 之间，且越大越好。
+上述 $a,b,c,d$ 分别对应两样本在两种模型下分类相同、有一个不同、全都不同的样本数量，显然 $a+b+c+d=m(m-1)/2$。三种指标的取值均在 $[0,1]$​ 之间，且越大越好。
 
-### 四、参考资料
+### 四、实验结果
+
+#### 4.1 超参数选择
+
+<img src="https://dwj-oss.oss-cn-nanjing.aliyuncs.com/images/202405280927149.png" alt="簇数选择" style="zoom: 10%;" />
+
+通过簇数的更新，可以得到上图所示的数据。最终我们选择簇数 `n_cluster` 为 5 作为最佳实践，这也与真实数据的簇数相等。
+
+#### 4.2 大数据性能测试
+
+将完整数据集作为聚类数据，即 $5 \times 10^6$ 条样本数据，最终算法执行时间与标准包执行时间差异明显。自定义聚类模型的执行时间约为标准包执行时间的 15 倍。但聚类效果较优，FM 指数为 0.75，而标准包的 FM 指数为 0.64
+
+<img src="https://dwj-oss.oss-cn-nanjing.aliyuncs.com/images/202405280934630.png" alt="大数据性能测试" style="zoom: 50%;" />
+
+### 五、参考资料
 
 [机器学习 周志华](https://book.douban.com/subject/26708119/)
 
@@ -77,5 +91,5 @@ std_result = std_model.labels_
 
 [入侵检测之KDDCUP99数据集分析](https://blog.csdn.net/qq_38384924/article/details/97128744)
 
-### 五、总结与反思
+### 六、总结与反思
 
