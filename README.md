@@ -38,7 +38,7 @@ std_model.fit(X)
 std_result = std_model.labels_
 ```
 
-于是我们定义 `fit(X: pd.DataFrame) -> None` 方法进行参数训练，`label_: pd.Series` 字段存储每一个样本的聚类结果标签，`n_clusters: int` 字段存储当前模型的簇数，`n_init: int` 字段存储质心初始化次数，再补充一个 `centroids: pd.DataFrame` 字段存储质心数据。
+于是我们定义 `fit(X: pd.DataFrame) -> None` 方法进行参数训练，`label_: pd.Series` 字段存储每一个样本的聚类结果标签，`n_clusters: int` 字段存储当前模型的簇数，`n_init: int` 字段存储质心初始化次数，`p` 字段存储闵可夫斯基距离计算公式中的指数信息，再补充一个 `centroids: pd.DataFrame` 字段存储质心数据。
 
 #### 2.2 算法设计
 
@@ -91,8 +91,10 @@ std_result = std_model.labels_
 
 [入侵检测之KDDCUP99数据集分析](https://blog.csdn.net/qq_38384924/article/details/97128744)
 
+[如何使用 Pandas 删除 DataFrame 中的非数字类型数据？](https://blog.csdn.net/m0_67847535/article/details/136358560)
+
 ### 六、总结与反思
 
-**异常值处理**。没有进行缺失值检测，常规方法是对属性的属性值进行去重查看后，对异常值进行处理。
-
-**超参设定**。没有进行距离计算的参数设定，直接使用了欧氏距离作为样本之间的距离。
+- [x] **异常值处理**。没有进行缺失值检测，常规方法是对属性的属性值进行去重查看后，对异常值进行处理
+- [ ] **随机采样库函数调研**。没有进行 `data.sample()` 采样方法的调研
+- [ ] **距离计算超参设定**。没有进行距离计算的参数设定，直接使用了欧氏距离作为样本之间的距离
