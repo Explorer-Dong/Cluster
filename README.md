@@ -38,7 +38,7 @@ std_model.fit(X)
 std_result = std_model.labels_
 ```
 
-于是我们定义 `fit(X: pd.DataFrame) -> None` 方法进行参数训练，`label_: pd.Series` 字段存储每一个样本的聚类结果标签，`n_clusters: int` 字段存储当前模型的簇数，`n_init: int` 字段存储质心初始化次数，`p` 字段存储闵可夫斯基距离计算公式中的指数信息，再补充一个 `centroids: pd.DataFrame` 字段存储质心数据。
+于是我们定义 `fit(X: pd.DataFrame) -> None` 方法进行参数训练，`label_: pd.Series` 字段存储每一个样本的聚类结果标签，`n_clusters: int` 字段存储当前模型的簇数，`n_init: int` 字段存储质心初始化次数，`p: int` 字段存储闵可夫斯基距离计算公式中的指数信息，再补充一个 `centroids: pd.DataFrame` 字段存储质心数据。
 
 #### 2.2 算法设计
 
@@ -67,9 +67,13 @@ std_result = std_model.labels_
 
 #### 4.1 超参数选择
 
-<img src="https://dwj-oss.oss-cn-nanjing.aliyuncs.com/images/202405280927149.png" alt="簇数选择" style="zoom: 10%;" />
+![簇数选择](https://dwj-oss.oss-cn-nanjing.aliyuncs.com/images/202405280927149.png)
 
 通过簇数的更新，可以得到上图所示的数据。最终我们选择簇数 `n_cluster` 为 5 作为最佳实践，这也与真实数据的簇数相等。
+
+![p 指数选择](https://dwj-oss.oss-cn-nanjing.aliyuncs.com/images/202406041355043.png)
+
+通过 p 指数的更新，可以得到上图所示的数据。最终我们选择 `p` 值为 3 作为最佳实践，这也能解释使用标准包的计算结果的 FM 指数也不是很优
 
 #### 4.2 大数据性能测试
 
@@ -97,4 +101,6 @@ std_result = std_model.labels_
 
 - [x] **异常值处理**。没有进行缺失值检测。常规方法是对属性的属性值进行去重查看后，对异常值进行处理
 - [x] **随机采样库函数调研**。没有进行 `data.sample()` 采样方法的调研。调研后发现在不设置样本权重的情况下每个样本被视作相互独立的等权样本
-- [ ] **距离计算超参设定**。没有进行距离计算的参数设定，直接使用了欧氏距离作为样本之间的距离
+- [x] **距离计算超参设定**。没有进行距离计算的参数设定，直接使用了欧氏距离作为样本之间的距离
+- [ ] 特征筛选。没有进行 41 个特征的筛选，将全部的特征进行训练
+- [ ] 针对性使用距离计算公式。本项目对于每一个实验都是用了固定的距离计算公式，没有做到针对每一个特征设计合理的距离计算公式
